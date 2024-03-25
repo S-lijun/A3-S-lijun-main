@@ -1,0 +1,25 @@
+name: Autograder
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  test:
+    name: Autograder Tests
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Run tests
+        run: |
+          pip install .
+          pytest
